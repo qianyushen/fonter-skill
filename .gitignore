@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+# 生成产物不要进仓库
+projects/
+**/01_words/
+**/02_letters/
+**/03_vector/
+**/04_font/
+**/05_preview/
+**/06_art/
+*.cli.jsonl
