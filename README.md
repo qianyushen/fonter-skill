@@ -47,6 +47,8 @@ python3 scripts/make_specimen.py --font 04_font/MYFONT.otf --out 05_preview/spec
 python3 scripts/render_material.py --project . --material "老旧红砖墙 + 街头喷漆"   # 可选：材质海报
 ```
 
+海报默认把下半**排满 5 行**（26 个字 → 6 列 × 5 行，大字+数字 → 8 列 × 5 行，末行居中；`--grid-rows 2` 可回到旧版两行）。配色表共 **115 套**高饱和潘通撞色，`--palette auto` 会按字体风格散列取色并避开最近用过的 12 套，连着做几套也不会撞成同一张。
+
 ### 目录
 
 ```
@@ -107,6 +109,8 @@ python3 scripts/build_family.py --sources 02_letters/* --family MYFONT --out-dir
 python3 scripts/make_specimen.py --font 04_font/MYFONT.otf --out 05_preview/specimen.png
 python3 scripts/render_material.py --project . --material "old red brick + street spray paint"   # optional
 ```
+
+The poster fills the lower half with **5 rows** by default (26 glyphs → 6 × 5, plus digits → 8 × 5, last row centred; `--grid-rows 2` restores the old two-row look). The palette sheet holds **115** high-contrast Pantone pairings; `--palette auto` hashes on the font's style and skips the last 12 used, so back-to-back fonts never land on the same sheet.
 
 ### Repo layout
 

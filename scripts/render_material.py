@@ -165,7 +165,8 @@ def main() -> int:
     word = meta.get("word") or "（与参考图上方的两个词完全相同）"
     sentence = meta.get("sentence") or "（与参考图那行标语完全相同）"
     digits = "0-9" in str(meta.get("charset", "")) or meta.get("digits") is True
-    grid = "A–Z 两行 + 0–9 一行" if digits else "A–Z 两行"
+    row_chars = meta.get("grid", {}).get("row_characters")
+    grid = (f"共 {len(row_chars)} 行，逐行为：" + " / ".join(row_chars)) if row_chars else ("A–Z 两行 + 0–9 一行" if digits else "A–Z 两行")
 
     results = []
     for material in a.material:
@@ -197,7 +198,12 @@ def main() -> int:
                 stdout + ("\n---STDERR---\n" + p.stderr if p.stderr else ""), encoding="utf-8")
 
             if not out.exists():
-                cands = _collect(tmp, out, t0)
+                # Only accept generated paths attributed to this invocation's log.
+                log = stdout + "\n" + p.stderr
+                reported = re.findall(r"/[^\s\"'<>]*generated_images/[^\s\"'<>]+\.(?:png|jpg|jpeg|webp)", log)
+                cands = [Path(x) for x in dict.fromkeys(reported) if Path(x).is_file()]
+                if not cands:
+                    cands = [x for x in tmp.rglob("*.png") if x.stat().st_mtime >= t0]
                 best, best_area = None, 0
                 for c in cands:
                     try:
