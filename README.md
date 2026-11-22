@@ -37,12 +37,12 @@ One Codex skill. One font reference image. One click. A complete, ready-to-use f
 
 直接对你的 Codex 说这一句，别的都不用管：
 
-> 帮我上 GitHub 装 fonter-skill，装好我直接就能用 —— 还需要装什么额外依赖吗？
+> 帮我上 GitHub 装 fonter-skill，装好用我的参考图生成一套字体
 
-它会自己 clone、自己装依赖（Python 3.9+ 与 `pip install -r requirements.txt`），装完自查一遍；**你不需要开终端、不需要手动 pip install、不需要先配环境。**
-装完同一句话就能接着用：把参考图（或参考字截图）丢给它，加一句「用 fonter-skill 做一套字体」，剩下的它按 `SKILL.md` 自己走。
+（把参考图一起拖进对话即可。）它会自己 clone、自己装依赖、自查一遍，然后按 `SKILL.md` 直接开始做字体 —— **你不用开终端、不用手动 pip install、不用先配环境。**
 
-依赖情况一句话：**跑脚本的 Python 依赖由 Codex 自己装，只有「画单词参考图」那一步要模型**（Codex 内置 `image_gen`，或 ChatGPT 网页版）。机器上没装过 Python 也能直接说这句，它会先把 Python 装好。
+额外依赖只有一层：Python 3.9+ 和 `requirements.txt` 里 5 个纯 Python 包（numpy / scipy / pillow / fonttools / potracer），`scripts/setup.sh` 会自动装，**不需要 brew、不需要 potrace 二进制、不需要 ImageMagick，也不需要 API key** —— 出图那一步用 Codex 自带的 `image_gen`（或 ChatGPT 网页版）。
+唯一前提：**Codex 装依赖那一步要能联网**（沙箱默认断网时它会先问你要权限，允许一次即可）。
 
 ### 装成 Codex skill（手动版）
 
@@ -125,12 +125,12 @@ All you need is one reference image. FONTER handles everything: flattening the r
 
 Just say this to Codex — nothing else to figure out:
 
-> Install fonter-skill from GitHub for me, then I can start using it right away — are there any extra dependencies?
+> Install fonter-skill from GitHub, then build me a font from my reference image
 
-It clones the repo, installs the dependencies itself (Python 3.9+ and `pip install -r requirements.txt`) and runs a self-check. **You never open a terminal, never run pip install, never set up an environment by hand.**
-Then keep going in the same conversation: drop in your reference image (or a screenshot of the lettering) and say "build a font with fonter-skill" — `SKILL.md` drives everything after that.
+(Drop the reference image into the same message.) It clones the repo, installs the dependencies, runs a self-check and starts building the font per `SKILL.md` — **no terminal, no manual pip install, no environment setup.**
 
-The dependency answer in one line: **Codex installs the Python side for you; only the "draw the reference word image" step needs a model** (Codex's built-in `image_gen`, or ChatGPT web). A machine without Python works too — say the sentence above and it sets Python up first.
+The only dependency layer is Python 3.9+ plus five pure-Python packages (numpy / scipy / pillow / fonttools / potracer), installed automatically by `scripts/setup.sh`: **no Homebrew, no potrace binary, no ImageMagick, no API key** — the drawing step uses Codex's built-in `image_gen` (or ChatGPT web).
+One prerequisite: **Codex needs network access for that install step** (if the sandbox blocks it, it asks for permission once — just allow it).
 
 ### Install as a Codex skill (manual)
 
