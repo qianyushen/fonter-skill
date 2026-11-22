@@ -1,30 +1,41 @@
-# fonter — 设计师的噩梦，还是福音？
+# FONTER — 设计师的福音
 
-A designer's nightmare — or a blessing? One reference image in, a real font out.
-
-**一张参考图进去，一套能装的字体出来。** A Codex skill that turns a single reference image into a standard TTF / OTF font — upper case, lower case, digits — that keeps the reference's style and works in every Adobe app, and anywhere else you want to use it.
-
-![fonter — one image, one click, one font set done](docs/hero.jpg)
+<p align="center"><strong>One reference image in, a real font out.</strong></p>
 
 ---
 
 ## 中文
 
+![FONTER skill — one image one click one font set done](docs/hero.jpg)
+
+<p align="center">一个 Codex skill，只需要一张字体参考图，一次点击，一整套直接能用的字体。<br>
+One Codex skill. One font reference image. One click. A complete, ready-to-use font family.</p>
+
+### 效果参考图
+
+左边是参考字，右边是 FONTER 出来的结果 —— 同一套字形，换到不同材质上：
+
+![参考字 → 成品预览海报](docs/before-after.jpg)
+
 ### 它做的事
 
 | 你给 | 它还你 |
 | --- | --- |
-| 一张参考图（手绘草稿 / 特殊绘制的 logo 字体 / 你暂时还不想付费的字体 —— 剽窃可耻，喜欢就买） | `.otf` + `.ttf` 标准字体文件，含大小写与数字 |
-| | 一张矢量撞色风格的字体预览海报 |
+| 一张参考图（手绘草稿 / 特殊绘制的 logo 字体 / 你暂时还不想付费的字体 —— 剽窃可耻，但是你偷偷用我不会报警的） | `.otf` + `.ttf` 标准字体文件，含大小写与数字 |
+| | 一张矢量撞色风格的字体预览海报（Python 生成，不消耗额度） |
 | | 一张带真实材质的渲染海报（可选，不想要就不生成） |
 
-你只需要一张参考图。参考图的平面化、拆词、切字母、矢量化、字距字高归一、封装、体检，skill 全包了 —— 第一步也不用你操心。
+你只需要一张参考图。参考图的平面化、拆词、切字母、矢量化、字距字高统一、封装、体检，FONTER 一套直接解决好。
 
-### 三条规矩
+### 三条规定好的设计 Guideline
 
-- **风格绝对不变。** 参考图是唯一真值，不重新设计、不"顺手优化"、不换字体气质。
-- **token 尽量少。** 拆词方案与提示词都按最省的方式组织，能脚本干的绝不丢给模型。
-- **交付即能装。** 出厂跑过 Adobe 体检，PS / AI / ID 里能选中、能打出字。
+- **风格不变** —— 仅按照参考图的设计风格生成，不重新设计，不改设计。
+- **Token 消耗节流** —— 拆词方案经过设计，在保证效果的情况下消耗最少 token；后期用 Python 做，消耗无需担心。
+- **安装包可以直接用** —— 测试已跑过 Adobe 全家桶，安装就能直接用。
+
+### 最简单用法
+
+**告诉你的 Codex：去 GitHub 上找一个 FONTER skill，把参考图给它，直接就可以跑。**
 
 ### 装成 Codex skill
 
@@ -55,7 +66,7 @@ python3 scripts/render_material.py --project . --material "老旧红砖墙 + 街
 SKILL.md            agent 照做的完整流程（闸门 / 词表规划 / 踩过的坑）
 scripts/            切分 · 组字 · 海报 · 材质渲染 · 体检 · 环境自查
 references/         生图提示词、海报与配色规范
-docs/               头图 / 海报示例
+docs/               头图 / 前后对比图
 setup.command       macOS 一键装依赖
 ```
 
@@ -73,21 +84,37 @@ MIT，见 [LICENSE](LICENSE)。
 
 ## English
 
+![FONTER skill — one image one click one font set done](docs/hero.jpg)
+
+<p align="center">One Codex skill. One font reference image. One click. A complete, ready-to-use font family.</p>
+
+### Reference → result
+
+Left: the reference lettering. Right: what FONTER makes of it — the same typeface, re-rendered in different materials:
+
+![reference lettering → finished preview posters](docs/before-after.jpg)
+
 ### What it does
 
 | You give | You get |
 | --- | --- |
-| One reference image — a hand-drawn draft, a custom logo typeface, or a font you're not ready to pay for yet (please do buy it if you like it) | Standard `.otf` + `.ttf` files, upper case + lower case + digits |
-| | A vector font-preview poster in a high-contrast palette |
+| Just one reference image. It could be a hand-drawn sketch, a custom logo typeface, or even that font you've been eyeing but aren't quite ready to pay for. Stealing is wrong, of course, but your little secret is safe with me. | Standard `.otf` + `.ttf` files, upper case + lower case + digits |
+| | A bold, high-contrast vector-style font preview poster (generated entirely with Python, so no extra tokens required) |
 | | A real-material render of that poster (optional — skip it if you don't want one) |
 
-One image is all you need. Flattening the reference, planning the letter-coverage words, segmenting, vectorizing, equalising spacing and cap height, assembly and validation are all handled — you don't even have to think about step one.
+All you need is one reference image. FONTER handles everything: flattening the reference, splitting words, extracting individual letters, vectorizing, standardizing letter spacing and height, packaging the font, and running quality checks.
 
-### House rules
+**One reference image. FONTER takes care of the rest.**
 
-- **The style never changes.** The reference is the only source of truth: nothing gets redesigned, "improved", or swapped for another typeface's personality.
-- **As few tokens as possible.** Word plans and prompts are kept lean, and everything a script can do stays out of the model.
-- **Ships installable.** Every build passes an Adobe check, so it selects and types properly in PS / AI / ID.
+### Three Built-In Design Guidelines
+
+1. **Style Fidelity** — The reference is the source of truth. FONTER follows its original design language without redesigning, altering, or "improving" the style.
+2. **Token Efficiency** — The workflow is carefully designed to minimize token usage without compromising output quality. Later stages are handled by Python scripts, keeping additional token costs to a minimum.
+3. **Install-Ready Fonts** — Tested across the Adobe Creative Cloud suite. Install the font and start using it right away. No extra setup required.
+
+### The Easiest Way to Get Started
+
+**Simply tell Codex to find the FONTER skill on GitHub, give it your reference image, and let it handle the rest.**
 
 ### Install as a Codex skill
 
@@ -118,7 +145,7 @@ The poster fills the lower half with **5 rows** by default (26 glyphs → 6 × 5
 SKILL.md            the playbook an agent follows (gates, word planning, pitfalls)
 scripts/            segment · build · poster · material render · doctor · env check
 references/         image-model prompts, poster and palette spec
-docs/               hero image / example poster
+docs/               hero image / reference-vs-result image
 setup.command       macOS one-click dependency install
 ```
 
@@ -131,3 +158,7 @@ setup.command       macOS one-click dependency install
 ### License
 
 MIT — see [LICENSE](LICENSE).
+
+---
+
+<p align="center"><strong>That's it. One image. One skill. A real font.</strong></p>
