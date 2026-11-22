@@ -1,6 +1,6 @@
 # FONTER — 设计师的福音
 
-<p align="center"><strong>One reference image in, a real font out.</strong></p>
+<p align="center"><strong>一张参考图，一次点击，生成一套直接可用的字体</strong> &nbsp;·&nbsp; <strong>One reference image in, a real font out.</strong></p>
 
 ---
 
