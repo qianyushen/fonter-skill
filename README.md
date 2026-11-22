@@ -4,7 +4,7 @@ A designer's nightmare — or a blessing? One reference image in, a real font ou
 
 **一张参考图进去，一套能装的字体出来。** A Codex skill that turns a single reference image into a standard TTF / OTF font — upper case, lower case, digits — that keeps the reference's style and works in every Adobe app, and anywhere else you want to use it.
 
-![specimen example](docs/example.png)
+![fonter — one image, one click, one font set done](docs/hero.jpg)
 
 ---
 
@@ -55,7 +55,7 @@ python3 scripts/render_material.py --project . --material "老旧红砖墙 + 街
 SKILL.md            agent 照做的完整流程（闸门 / 词表规划 / 踩过的坑）
 scripts/            切分 · 组字 · 海报 · 材质渲染 · 体检 · 环境自查
 references/         生图提示词、海报与配色规范
-docs/               海报示例
+docs/               头图 / 海报示例
 setup.command       macOS 一键装依赖
 ```
 
@@ -118,7 +118,7 @@ The poster fills the lower half with **5 rows** by default (26 glyphs → 6 × 5
 SKILL.md            the playbook an agent follows (gates, word planning, pitfalls)
 scripts/            segment · build · poster · material render · doctor · env check
 references/         image-model prompts, poster and palette spec
-docs/               example poster
+docs/               hero image / example poster
 setup.command       macOS one-click dependency install
 ```
 
