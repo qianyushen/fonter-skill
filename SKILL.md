@@ -1,5 +1,5 @@
 ---
-name: fonter
+name: fonter-skill
 description: >-
   Turn one hand-lettered reference — a whole word ("happy", "atom flow") or a single letter ("N") — into an installable TTF/OTF font covering A–Z / a–z (optional 0–9), then render a Pantone-contrast preview poster and an optional real-material render. Use when the user wants a typeface built from a wordmark, lettering, logo or a hand-drawn glyph: plan the words that cover the alphabet, generate them with the image model, segment each letter, vectorize, equalise cap height and side bearings, assemble and validate the font, then package font + poster.
 metadata:
@@ -318,10 +318,10 @@ python3 scripts/check_env.py        # 全部 ✓ 就能跑了
 ```bash
 cd ~/Desktop/某个项目
 codex exec --skip-git-repo-check -s workspace-write -i 参考图.png - < 任务.md
-# 任务.md 里写：读 ~/.codex/skills/fonter/SKILL.md，按它做完整套字体 + 预览
+# 任务.md 里写：读 ~/.codex/skills/fonter-skill/SKILL.md，按它做完整套字体 + 预览
 ```
-Codex 从 `$CODEX_HOME/skills`（默认 `~/.codex/skills`）加载 skill，`fonter` 是
-符号链接也没问题（`codex debug prompt-input | grep fonter` 可自查是否加载到）。
+Codex 从 `$CODEX_HOME/skills`（默认 `~/.codex/skills`）加载 skill，`fonter-skill` 是
+符号链接也没问题（`codex debug prompt-input | grep fonter-skill` 可自查是否加载到）。
 
 **完全不用 agent 的做法**：自己 `codex`/ChatGPT 出 7 张单词图丢进 `01_words/<WORD>/`，
 剩下三步全用命令行：
@@ -337,17 +337,17 @@ python3 scripts/make_specimen.py --font 04_font/MYFONT.otf --out 05_preview/spec
 仓库里带了 `requirements.txt`、`scripts/setup.sh`、`setup.command`，所以**不需要手敲 pip**：
 
 ```bash
-git clone <repo> ~/fontskill
-ln -s ~/fontskill ~/.codex/skills/fonter     # 或整个目录拷进 ~/.codex/skills/
-bash ~/.codex/skills/fonter/scripts/setup.sh  # 装依赖 + 自查
+git clone https://github.com/qianyushen/fonter-skill ~/fonter-skill
+ln -s ~/fonter-skill ~/.codex/skills/fonter-skill   # 或整个目录拷进 ~/.codex/skills/
+bash ~/.codex/skills/fonter-skill/scripts/setup.sh  # 装依赖 + 自查
 # macOS 也可以直接双击 setup.command
 ```
 
 也可以**直接叫 codex 自己装**，一句话就够：
 
 ```
-先跑 bash ~/.codex/skills/fonter/scripts/setup.sh 把依赖装好，
-再用 ~/.codex/skills/fonter/scripts/check_env.py 确认全绿，然后继续做字体。
+帮我上 GitHub 装 fonter-skill，然后跑 setup.sh 把依赖装好，
+再用 check_env.py 确认全绿，还需要装什么额外依赖吗？装好继续做字体。
 ```
 
 ⚠️ **codex 的沙箱默认断网**（实测 `workspace-write` 下 curl 连 127.0.0.1:7890 都失败），

@@ -1,5 +1,5 @@
 #!/bin/bash
-# 一条命令装好 fonter 的依赖，并自查。
+# 一条命令装好 fonter-skill 的依赖，并自查。
 #   bash scripts/setup.sh            # 装 + 自查
 #   bash scripts/setup.sh --check    # 只自查
 #   bash scripts/setup.sh --python /path/to/python3
@@ -17,7 +17,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-echo "=== fonter 依赖安装 ==="
+echo "=== fonter-skill 依赖安装 ==="
 echo "skill: $SKILL"
 echo "python: $(command -v "$PY" || echo "$PY") → $("$PY" -V 2>&1)"
 

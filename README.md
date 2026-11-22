@@ -33,19 +33,28 @@ One Codex skill. One font reference image. One click. A complete, ready-to-use f
 - **Token 消耗节流** —— 拆词方案经过设计，在保证效果的情况下消耗最少 token；后期用 Python 做，消耗无需担心。
 - **安装包可以直接用** —— 测试已跑过 Adobe 全家桶，安装就能直接用。
 
-### 最简单用法
+### 最简单用法（没装过的从这里开始）
 
-**告诉你的 Codex：去 GitHub 上找一个 FONTER skill，把参考图给它，直接就可以跑。**
+直接对你的 Codex 说这一句，别的都不用管：
 
-### 装成 Codex skill
+> 帮我上 GitHub 装 fonter-skill，装好我直接就能用 —— 还需要装什么额外依赖吗？
+
+它会自己 clone、自己装依赖（Python 3.9+ 与 `pip install -r requirements.txt`），装完自查一遍；**你不需要开终端、不需要手动 pip install、不需要先配环境。**
+装完同一句话就能接着用：把参考图（或参考字截图）丢给它，加一句「用 fonter-skill 做一套字体」，剩下的它按 `SKILL.md` 自己走。
+
+依赖情况一句话：**跑脚本的 Python 依赖由 Codex 自己装，只有「画单词参考图」那一步要模型**（Codex 内置 `image_gen`，或 ChatGPT 网页版）。机器上没装过 Python 也能直接说这句，它会先把 Python 装好。
+
+### 装成 Codex skill（手动版）
+
+不想让 Codex 代劳、要自己装的话：
 
 ```bash
-git clone https://github.com/qianyushen/fonter ~/fontskill
-ln -s ~/fontskill ~/.codex/skills/fonter
-bash ~/.codex/skills/fonter/scripts/setup.sh   # 装依赖 + 自查
+git clone https://github.com/qianyushen/fonter-skill ~/fonter-skill
+ln -s ~/fonter-skill ~/.codex/skills/fonter-skill
+bash ~/.codex/skills/fonter-skill/scripts/setup.sh   # 装依赖 + 自查
 ```
 
-macOS 也可以直接双击 `setup.command`。依赖：Python 3.9+、`pip install -r requirements.txt`。
+macOS 也可以直接双击 `setup.command`。依赖：Python 3.9+、`pip install -r requirements.txt`（`scripts/setup.sh` 会自己装好）。
 只有"画单词图"那一步需要模型（codex 内置 `image_gen`，或 ChatGPT 网页版），其余全部离线。
 
 ### 快速上手
@@ -112,19 +121,28 @@ All you need is one reference image. FONTER handles everything: flattening the r
 2. **Token Efficiency** — The workflow is carefully designed to minimize token usage without compromising output quality. Later stages are handled by Python scripts, keeping additional token costs to a minimum.
 3. **Install-Ready Fonts** — Tested across the Adobe Creative Cloud suite. Install the font and start using it right away. No extra setup required.
 
-### The Easiest Way to Get Started
+### The Easiest Way to Get Started (never installed it? start here)
 
-**Simply tell Codex to find the FONTER skill on GitHub, give it your reference image, and let it handle the rest.**
+Just say this to Codex — nothing else to figure out:
 
-### Install as a Codex skill
+> Install fonter-skill from GitHub for me, then I can start using it right away — are there any extra dependencies?
+
+It clones the repo, installs the dependencies itself (Python 3.9+ and `pip install -r requirements.txt`) and runs a self-check. **You never open a terminal, never run pip install, never set up an environment by hand.**
+Then keep going in the same conversation: drop in your reference image (or a screenshot of the lettering) and say "build a font with fonter-skill" — `SKILL.md` drives everything after that.
+
+The dependency answer in one line: **Codex installs the Python side for you; only the "draw the reference word image" step needs a model** (Codex's built-in `image_gen`, or ChatGPT web). A machine without Python works too — say the sentence above and it sets Python up first.
+
+### Install as a Codex skill (manual)
+
+If you'd rather do it yourself:
 
 ```bash
-git clone https://github.com/qianyushen/fonter ~/fontskill
-ln -s ~/fontskill ~/.codex/skills/fonter
-bash ~/.codex/skills/fonter/scripts/setup.sh   # deps + self-check
+git clone https://github.com/qianyushen/fonter-skill ~/fonter-skill
+ln -s ~/fonter-skill ~/.codex/skills/fonter-skill
+bash ~/.codex/skills/fonter-skill/scripts/setup.sh   # deps + self-check
 ```
 
-On macOS you can also double-click `setup.command`. Requirements: Python 3.9+, `pip install -r requirements.txt`.
+On macOS you can also double-click `setup.command`. Requirements: Python 3.9+ and `pip install -r requirements.txt` (`scripts/setup.sh` installs both for you).
 Only the drawing step needs a model (`codex` built-in `image_gen`, or ChatGPT web); everything else runs offline.
 
 ### Quick start
